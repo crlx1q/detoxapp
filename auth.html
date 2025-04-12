@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detox - Авторизация</title>
+    <link rel="icon" href="detox.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            200: '#bbf7d0',
+                            300: '#86efac',
+                            400: '#4ade80',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            800: '#166534',
+                            900: '#14532d',
+                        },
+                        dark: {
+                            900: '#0a0a0a',
+                            800: '#171717',
+                            700: '#262626',
+                            600: '#404040',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #0a0a0a;
+            color: #f5f5f5;
+            scroll-behavior: smooth;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, rgba(20, 83, 45, 0.8) 0%, rgba(6, 22, 11, 0.9) 100%);
+        }
+        
+        .download-btn {
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 7px 14px rgba(22, 101, 52, 0.3);
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: #22c55e;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .form-input {
+            background-color: #262626;
+            border: 1px solid #404040;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .form-input:focus {
+            border-color: #22c55e;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <!-- Навигация -->
+    <nav class="bg-dark-800 sticky top-0 z-50 border-b border-dark-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <a href="index.html">
+                            <img src="detox.png" alt="Detox logo" class="h-8 w-8 mr-2">
+                        </a>
+                        <a href="index.html">
+                            <span class="text-white font-bold text-xl">Detox</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="index.html#features" class="nav-link text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">Возможности</a>
+                        <a href="index.html#how-it-works" class="nav-link text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">Как работает</a>
+                        <a href="index.html#download" class="nav-link text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">Скачать</a>
+                        <a href="index.html#faq" class="nav-link text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">FAQ</a>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button type="button" class="mobile-menu-button inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-dark-700 focus:outline-none">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Мобильное меню -->
+        <div class="mobile-menu hidden md:hidden">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-dark-800">
+                <a href="index.html#features" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-dark-700">Возможности</a>
+                <a href="index.html#how-it-works" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-dark-700">Как работает</a>
+                <a href="index.html#download" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-dark-700">Скачать</a>
+                <a href="index.html#faq" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-dark-700">FAQ</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Секция аутентификации -->
+    <section class="py-16 bg-dark-900">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">Доступ к скачиванию <span class="text-primary-500">Detox</span></h2>
+                <p class="text-gray-400 max-w-2xl mx-auto" id="version-info">Чтобы скачать программу, вам необходимо войти или подать заявку на доступ</p>
+            </div>
+            
+            <div class="flex flex-wrap -mx-4">
+                <!-- Блок авторизации -->
+                <div class="w-full md:w-1/2 px-4 mb-8 md:mb-0">
+                    <div class="bg-dark-800 p-6 rounded-xl border border-dark-700">
+                        <h3 class="text-xl font-bold mb-6 text-center">Вход для авторизованных пользователей</h3>
+                        
+                        <form id="login-form" class="space-y-6">
+                            <div id="login-error" class="hidden bg-red-900/50 text-red-200 p-3 rounded-lg text-sm"></div>
+                            
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-300 mb-2">Email</label>
+                                <input type="email" id="email" name="email" class="form-input w-full px-4 py-2 rounded-lg" required>
+                            </div>
+                            
+                            <div>
+                                <label for="password" class="block text-sm font-medium text-gray-300 mb-2">Пароль</label>
+                                <input type="password" id="password" name="password" class="form-input w-full px-4 py-2 rounded-lg" required>
+                            </div>
+                            
+                            <div>
+                                <button type="submit" class="download-btn w-full bg-primary-600 hover:bg-primary-700 text-white font-bold py-3 px-4 rounded-lg">
+                                    <i class="fas fa-sign-in-alt mr-2"></i> Войти и скачать
+                                </button>
+                            </div>
+                        </form>
+                        
+                        <div id="download-section" class="hidden mt-6 text-center">
+                            <div class="mb-4 p-4 bg-primary-900/30 rounded-lg">
+                                <p class="text-primary-300 font-medium mb-2">Доступ предоставлен!</p>
+                                <p class="text-gray-400 text-sm">Спасибо за использование Detox</p>
+                            </div>
+                            <a id="download-link" href="#" class="download-btn inline-block w-full bg-primary-600 hover:bg-primary-700 text-white font-bold py-3 px-4 rounded-lg">
+                                <i class="fas fa-download mr-2"></i> Скачать
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Блок регистрации на лист ожидания -->
+                <div class="w-full md:w-1/2 px-4">
+                    <div class="bg-dark-800 p-6 rounded-xl border border-dark-700">
+                        <h3 class="text-xl font-bold mb-6 text-center">Запрос на доступ</h3>
+                        
+                        <div id="waitlist-form-container">
+                            <p class="text-gray-400 mb-6">Если у вас еще нет доступа, вы можете оставить заявку на получение приглашения. Мы свяжемся с вами, когда доступ будет открыт.</p>
+                            
+                            <form id="waitlist-form" class="space-y-6">
+                                <div>
+                                    <label for="fullname" class="block text-sm font-medium text-gray-300 mb-2">Имя и фамилия</label>
+                                    <input type="text" id="fullname" name="fullname" class="form-input w-full px-4 py-2 rounded-lg" required>
+                                </div>
+                                
+                                <div>
+                                    <label for="waitlist-email" class="block text-sm font-medium text-gray-300 mb-2">Email</label>
+                                    <input type="email" id="waitlist-email" name="email" class="form-input w-full px-4 py-2 rounded-lg" required>
+                                </div>
+                                
+                                <div>
+                                    <label for="reason" class="block text-sm font-medium text-gray-300 mb-2">Для чего вам нужен Detox?</label>
+                                    <textarea id="reason" name="reason" rows="3" class="form-input w-full px-4 py-2 rounded-lg" required></textarea>
+                                </div>
+                                
+                                <div class="flex items-center">
+                                    <input type="checkbox" id="terms" name="terms" class="h-4 w-4 text-primary-600" required>
+                                    <label for="terms" class="ml-2 block text-sm text-gray-400">
+                                        Я согласен с <a href="#" class="text-primary-500 hover:text-primary-400">условиями использования</a>
+                                    </label>
+                                </div>
+                                
+                                <div>
+                                    <button type="submit" class="download-btn w-full bg-dark-600 hover:bg-dark-500 text-white font-bold py-3 px-4 rounded-lg">
+                                        <i class="fas fa-paper-plane mr-2"></i> Отправить заявку
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                        
+                        <div id="waitlist-success" class="hidden">
+                            <div class="text-center">
+                                <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary-900 mb-6">
+                                    <i class="fas fa-check text-primary-400 text-2xl"></i>
+                                </div>
+                                <h4 class="text-xl font-semibold mb-3">Заявка отправлена!</h4>
+                                <p class="text-gray-400">Спасибо за интерес к Detox. Мы рассмотрим вашу заявку и свяжемся с вами по email, как только доступ будет предоставлен.</p>
+                                <a href="index.html" class="inline-block mt-6 text-primary-500 hover:text-primary-400">
+                                    <i class="fas fa-arrow-left mr-2"></i> Вернуться на главную
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Подвал -->
+    <footer class="bg-dark-900 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="md:col-span-2">
+                    <div class="flex items-center mb-4">
+                        <img src="detox.png" alt="Detox logo" class="h-8 w-8 mr-2">
+                        <span class="text-white font-bold text-xl">Detox</span>
+                    </div>
+                    <p class="text-gray-400 mb-4">Инновационное решение для защиты зрения при работе за компьютером. Заботьтесь о своих глазах с умом.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-primary-500">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-primary-500">
+                            <i class="fab fa-facebook text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-primary-500">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-primary-500">
+                            <i class="fab fa-github text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-white font-semibold mb-4">Продукт</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html#features" class="text-gray-400 hover:text-primary-500">Возможности</a></li>
+                        <li><a href="index.html#how-it-works" class="text-gray-400 hover:text-primary-500">Как работает</a></li>
+                        <li><a href="index.html#download" class="text-gray-400 hover:text-primary-500">Скачать</a></li>
+                        <li><a href="index.html#faq" class="text-gray-400 hover:text-primary-500">FAQ</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-white font-semibold mb-4">Контакты</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-center text-gray-400">
+                            <i class="fas fa-envelope mr-2 text-primary-500"></i>
+                            <span>почта@скоробудет</span>
+                        </li>
+                        <li class="flex items-center text-gray-400">
+                            <i class="fas fa-globe mr-2 text-primary-500"></i>
+                            <span>crlx1q.github.io/detoxapp/</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-dark-700 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-500 text-sm mb-4 md:mb-0">© 2025 Detox. Все права защищены.</p>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-500 hover:text-primary-500 text-sm">Политика конфиденциальности</a>
+                    <a href="#" class="text-gray-500 hover:text-primary-500 text-sm">Условия использования</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="auth.js"></script>
+
+    <script>
+        // Мобильное меню
+        const mobileMenuButton = document.querySelector('.mobile-menu-button');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>
